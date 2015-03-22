@@ -9,32 +9,68 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+#import "XCTestCase+DNSiOSLocalization.h"
+
+static NSString * const SPANISH = @"es";
+static NSString * const ENGLISH = @"en";
+static NSString * const FRENCH = @"fr";
+
 @interface XCTestLocalizationTests : XCTestCase
 
 @end
 
 @implementation XCTestLocalizationTests
 
-- (void)setUp {
+- (void)setUp
+{
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSString *passedInLanguageError =  [self dns_checkSimIsRunningPassedInLanguage];
+    XCTAssertNil(passedInLanguageError, @"Error with sim: %@", passedInLanguageError);
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testLocalizableDotStringsTranslationCheck
+{
+    NSString *language = [self dns_currentDeviceOrSimLanguage];
+    
+    NSArray *missingKeyErrors = [self dns_checkAllKeysInLocalizableStringsAreLocalizedWithDeveloperLanguageCode:nil
+                                                                                           knownIdenticalValues:@[@"OK"]];
+    
+    if ([language isEqualToString:ENGLISH] || [language isEqualToString:SPANISH]) {
+        XCTAssertNil(missingKeyErrors, @"There shouldn't be missing keys in english or spanish!");
+    } else {
+        XCTAssertNotNil(missingKeyErrors, @"There should be missing keys in french!");
+    }
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testFailingToPassIdenticalValuesBarfs
+{
+    NSString *language = [self dns_currentDeviceOrSimLanguage];
+    NSArray *errors = [self dns_checkAllKeysInLocalizableStringsAreLocalizedWithDeveloperLanguageCode:nil knownIdenticalValues:nil];
+    if ([language isEqualToString:ENGLISH]) {
+        XCTAssertNil(errors, @"There should be no errors on the development language!");
+    } else {
+        XCTAssertNotNil(errors, @"There should be an error on OK!");
+    }
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testInfoPListDotStringsTranslationCheck
+{
+    NSString *language = [self dns_currentDeviceOrSimLanguage];
+    
+    NSString *bundleDisplayNameKey = @"CFBundleDisplayName";
+    
+    BOOL isTranslated = [self dns_isInfoPlistKeyValueLocalized:bundleDisplayNameKey];
+    NSString *actual = [[NSBundle mainBundle] objectForInfoDictionaryKey:bundleDisplayNameKey];
+    if ([language isEqualToString:FRENCH]) {
+        XCTAssertTrue(isTranslated, @"Showing as not translated when it is!");
+        XCTAssertTrue([actual isEqualToString:@"Français"], @"Translation didn't work");
+    } else if ([language isEqualToString:SPANISH]) {
+        XCTAssertFalse(isTranslated, @"Showing as translated when it isn't!");
+        XCTAssertTrue([actual isEqualToString:@"Untranslated!"], @"Lack of translation worked!");
+    } else if ([language isEqualToString:ENGLISH]) {
+        XCTAssertTrue(isTranslated, @"Showing as not translated when it is!");
+        XCTAssertTrue([actual isEqualToString:@"English"], @"Translation didn't work!");
+    }
 }
 
 @end
