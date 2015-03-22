@@ -22,7 +22,6 @@ static NSString * const BASE_LOCALIZATION_NAME = @"Base";
             languageBundePath = [[NSBundle mainBundle] pathForResource:BASE_LOCALIZATION_NAME ofType:@"lproj"];
         }
     }
-    
 
     return [NSBundle bundleWithPath:languageBundePath];
 }
@@ -72,11 +71,13 @@ static NSString * const BASE_LOCALIZATION_NAME = @"Base";
         NSBundle *developerLanguageBundle;
         
         if (!developerLanguageCode) {
+            //Try the base localization
             developerLanguageBundle = [self dns_bundleForLanguage:BASE_LOCALIZATION_NAME];
             if (!developerLanguageBundle) {
                 return @"Language bundle for Base localization is nil! Please pass in a language or check your base localization.";
             }
         } else {
+            //Use the passed-in developer language
             developerLanguageBundle = [self dns_bundleForLanguage:developerLanguageCode];
             if (!developerLanguageBundle) {
                 return [NSString stringWithFormat:@"Language bundle for developer language %@ is nil", developerLanguageCode];
@@ -113,7 +114,7 @@ static NSString * const BASE_LOCALIZATION_NAME = @"Base";
  * the sim to launch in a specific language.
  * Further details about this technique: https://coderwall.com/p/te63dg
  */
-- (NSString *)dns_checkSimIsRunningPassedInLanguage
+- (NSString *)dns_checkSimOrDeviceIsRunningPassedInLanguage
 {
     //Get the arguments passed from the scheme
     NSArray *arguments = [[NSProcessInfo processInfo] arguments];

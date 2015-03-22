@@ -24,7 +24,7 @@ static NSString * const FRENCH = @"fr";
 - (void)setUp
 {
     [super setUp];
-    NSString *passedInLanguageError =  [self dns_checkSimIsRunningPassedInLanguage];
+    NSString *passedInLanguageError =  [self dns_checkSimOrDeviceIsRunningPassedInLanguage];
     XCTAssertNil(passedInLanguageError, @"Error with sim: %@", passedInLanguageError);
 }
 

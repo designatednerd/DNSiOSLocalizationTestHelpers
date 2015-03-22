@@ -17,6 +17,7 @@
 		9B38798F1ABE740800EC06F1 /* XCTestCase+DNSiOSLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B38798E1ABE740800EC06F1 /* XCTestCase+DNSiOSLocalization.m */; };
 		9B3879921ABE76F200EC06F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B3879901ABE76F200EC06F1 /* InfoPlist.strings */; };
 		9B3879951ABE76F700EC06F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B3879931ABE76F700EC06F1 /* Localizable.strings */; };
+		9B58521C1ABE938F004A1F4C /* DNSLocalizedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58521B1ABE938F004A1F4C /* DNSLocalizedStrings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		9B3879981ABE7C5A00EC06F1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B3879991ABE7C5A00EC06F1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B38799A1ABE85F300EC06F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B58521A1ABE938F004A1F4C /* DNSLocalizedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNSLocalizedStrings.h; sourceTree = "<group>"; };
+		9B58521B1ABE938F004A1F4C /* DNSLocalizedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNSLocalizedStrings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				9B004DC21ABE5D8B00A5C82F /* XCTestLocalization */,
-				9B004DDC1ABE5D8B00A5C82F /* XCTestLocalizationTests */,
 				9B004DC11ABE5D8B00A5C82F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +98,9 @@
 				9B004DC81ABE5D8B00A5C82F /* AppDelegate.m */,
 				9B004DCA1ABE5D8B00A5C82F /* ViewController.h */,
 				9B004DCB1ABE5D8B00A5C82F /* ViewController.m */,
+				9B58521A1ABE938F004A1F4C /* DNSLocalizedStrings.h */,
+				9B58521B1ABE938F004A1F4C /* DNSLocalizedStrings.m */,
+				9B004DDC1ABE5D8B00A5C82F /* XCTestLocalizationTests */,
 				9B004DCD1ABE5D8B00A5C82F /* Main.storyboard */,
 				9B004DD01ABE5D8B00A5C82F /* Images.xcassets */,
 				9B004DD21ABE5D8B00A5C82F /* LaunchScreen.xib */,
@@ -123,7 +128,7 @@
 				9B004DDD1ABE5D8B00A5C82F /* Supporting Files */,
 			);
 			path = XCTestLocalizationTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		9B004DDD1ABE5D8B00A5C82F /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -248,6 +253,7 @@
 			files = (
 				9B004DCC1ABE5D8B00A5C82F /* ViewController.m in Sources */,
 				9B004DC91ABE5D8B00A5C82F /* AppDelegate.m in Sources */,
+				9B58521C1ABE938F004A1F4C /* DNSLocalizedStrings.m in Sources */,
 				9B004DC61ABE5D8B00A5C82F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
