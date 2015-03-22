@@ -32,7 +32,7 @@ If you ever have to add something else to your scheme, this can get SUPER annoyi
 
 #Installation
 
-Recommended installation is through [CocoaPods](). Add the following line to your `Podfile`: 
+Recommended installation is through [CocoaPods](http://cocoapods.org/). Add the following line to your `Podfile`: 
 
 ```ruby
 pod 'DNSiOSLocalizationTestHelpers', '~> 1.0'
