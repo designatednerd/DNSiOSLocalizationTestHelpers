@@ -7,6 +7,6 @@ Pod::Spec.new do |s|
   s.author       = "Ellen Shapiro"
   s.platform     = :ios, '7.0'
   s.source       = { :git => "https://github.com/designatednerd/DNSiOSLocalizationTestHelpers.git", :tag => "v#{s.version}" }
-  s.source_files = 'DNSCastroSegmentedControl/Library'
+  s.source_files = 'Library'
   s.requires_arc = true
 end
